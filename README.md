@@ -13,7 +13,7 @@ npm i
 ```
 3. Run the main file. 
 ```js
-npm run
+npm run main
 ```
 
 HOW TO RUN TESTS
