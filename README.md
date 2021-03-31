@@ -15,3 +15,9 @@ HOW TO RUN TESTS
 ```js
 npm run test:watch
 ```
+
+ASSUMPTIONS
+* Ranks range from Ace, 2-10, Jack, Queen, King and suits can be any of four. 
+* There are no wild cards.
+* Whenever 5 cards are drawn, the deck has always been shuffled and always contains 52 cards.
+* Rank and Suit data returned from deckofcardsapi is in the form of a string. 
