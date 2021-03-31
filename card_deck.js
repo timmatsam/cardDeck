@@ -32,7 +32,7 @@ function parseCards(cards) {
     if (value === "KING") value = 13;
     else if (value === "QUEEN") value = 12;
     else if (value === "JACK") value = 11;
-    else if (value === "ACE") value = 2;
+    else if (value === "ACE") value = 1;
     else value = Number(value);
     ranks.push(value);
     suits.push(suit);
@@ -50,9 +50,10 @@ function topPokerHand(ranks, suits) {
     fourOfAKind = false,
     straight = true;
   let topPokerHand = "Straight flush";
+
+  //If set is size of one, this indicates there is no more than one distinct suit.
   if (suitSet.size === 1) {
-    //check whether it is a flush
-    flush = true; //now check whether it is a straight flush
+    flush = true;
   }
   ranks.sort((a, b) => a - b);
   for (let i = 0; i < ranks.length - 1; i++) {
