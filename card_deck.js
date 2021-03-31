@@ -1,34 +1,40 @@
 const axios = require("axios");
-
-async function createDeck() {
+const chalk = require("chalk");
+const log = console.log;
+const createDeck = async () => {
   let response = await axios //create a deck and shuffle it
     .get("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1");
   const deck_id = response.data["deck_id"];
-  console.log("Deck has been created.");
+  log(chalk.blue("Deck has been created."));
   await axios //draws 5 cards from the deck
     .get(`https://deckofcardsapi.com/api/deck/${deck_id}/draw/?count=5`)
     .then((res) => {
       const cards = res.data["cards"];
-      console.log("The following 5 cards have been drawn...");
+      log(chalk.blue("The following 5 cards have been drawn..."));
 
       const [ranks, suits] = parseCards(cards);
 
-      console.log("Top poker hand is:", topPokerHand(ranks, suits));
+      log(
+        chalk.blue(
+          "Top poker hand is:",
+          chalk.green(topPokerHand(ranks, suits))
+        )
+      );
     })
     .catch((error) => {
-      console.log(error, "There is an error in drawing the cards...");
+      log(error, "There is an error in drawing the cards...");
     });
-}
+};
 
 createDeck();
 
-function parseCards(cards) {
-  const ranks = [],
-    suits = [];
+const parseCards = (cards) => {
+  const ranks = [];
+  const suits = [];
   cards.forEach((card) => {
     let value = card["value"];
     const suit = card["suit"];
-    console.log(`${value} of ${suit}`);
+    log(chalk.blue(`${chalk.yellow(value)} of ${chalk.red(suit)}`));
     if (value === "KING") value = 13;
     else if (value === "QUEEN") value = 12;
     else if (value === "JACK") value = 11;
@@ -38,9 +44,9 @@ function parseCards(cards) {
     suits.push(suit);
   });
   return [ranks, suits];
-}
+};
 
-function topPokerHand(ranks, suits) {
+const topPokerHand = (ranks, suits) => {
   if (!ranks || !suits) return "High card";
 
   const suitSet = new Set([...suits]);
@@ -87,6 +93,6 @@ function topPokerHand(ranks, suits) {
   else if (pairs === 1) topPokerHand = "One pair";
   else topPokerHand = "High card";
   return topPokerHand;
-}
+};
 
 module.exports = { topPokerHand, parseCards };
