@@ -9,7 +9,7 @@ async function createDeck() {
     .get(`https://deckofcardsapi.com/api/deck/${deck_id}/draw/?count=5`)
     .then((res) => {
       const cards = res.data["cards"];
-      console.log("5 cards  have been drawn...");
+      console.log("The following 5 cards have been drawn...");
 
       const [ranks, suits] = parseCards(cards);
 
@@ -28,7 +28,7 @@ function parseCards(cards) {
   cards.forEach((card) => {
     let value = card["value"];
     const suit = card["suit"];
-
+    console.log(`${value} of ${suit}`);
     if (value === "KING") value = 13;
     else if (value === "QUEEN") value = 12;
     else if (value === "JACK") value = 11;
