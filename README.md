@@ -1,6 +1,8 @@
 # cardDeck
 
 HOW TO RUN TOP POKER HAND ALGORITHM
+Update node version to v12.19.1
+Update npm v6.14.8 
 1. Clone the repo
 ```js
 git clone https://github.com/timmatsam/cardDeck.git && cd cardDeck
