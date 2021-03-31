@@ -1,15 +1,18 @@
 # cardDeck
 
 HOW TO RUN TOP POKER HAND ALGORITHM
-1. Install all modules.
+1. Clone the repo
+```js
+git clone https://github.com/timmatsam/cardDeck.git && cd cardDeck
+```
+2. Install all modules.
 ```js
 npm i
 ```
-2. Run nodemon on the main file.
+3. Run the main file. 
 ```js
-nodemon card_deck.js
+npm run
 ```
-*Save the file each time for a rerun of the algorithm. 
 
 HOW TO RUN TESTS
 ```js
